@@ -116,7 +116,7 @@ public class Banca { /// Am facut o singura banca intre care se pot face toate t
 	}
 	
 	public void impumuta(Cont cont,float val) { /// pot imprumuta doar daca este aceasi banca
-		if (cont.getBanca().nume.equals(this.nume)) {
+		if (cont.getBanca().nume.equals(this.nume) && suma != 0) {
 			imprumuta.Aplica(cont,val);
 		}
 	}

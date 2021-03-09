@@ -32,8 +32,6 @@ public class Tranzactie {
 	
 	public Tranzactie(Cont From,float suma,int a) {
 		this.From = From;
-		if (suma < 0) 
-			suma = 0;
 		this.suma = suma;
 		id = ++cont;
 		deLaBanca = true;

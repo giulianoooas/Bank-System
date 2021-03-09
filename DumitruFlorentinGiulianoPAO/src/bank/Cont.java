@@ -205,7 +205,7 @@ public class Cont {
 	}
 	
 	public void depoziteaza(float suma) {
-		if (areUnServiciuActiv == false) {
+		if (areUnServiciuActiv == false && suma != 0) {
 			this.dezactiveazaServiciile();
 			banca.makeDepozit(this,suma);
 		}
