@@ -10,6 +10,7 @@ public class Main {
 		Cont cont2 = new Cont("",BCR1);
 		cont1.addMoney(12);
 		cont1.sentMoney(cont2, 10);
+		cont1.sentMoney(2);
 		System.out.println(cont2.getDetinator());
 		System.out.print("Mai am " + cont1.getSuma() + " bani.\n");
 		cont1.imprumuta(10);

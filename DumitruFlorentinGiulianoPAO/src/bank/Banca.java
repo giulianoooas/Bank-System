@@ -62,6 +62,8 @@ public class Banca { /// Am facut o singura banca intre care se pot face toate t
 			money = 0;
 		if (money > suma)
 			money = suma;
+		if (money == 0)
+			return 0;
 		suma -= money;
 		cont.addMoney(money);
 		return money;

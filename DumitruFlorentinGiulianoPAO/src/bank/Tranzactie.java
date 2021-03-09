@@ -6,6 +6,8 @@ public class Tranzactie {
 	private static int cont = 0;
 	private int id;
 	private float suma;
+	private boolean deLaBanca;
+	private boolean catreBanca;
 	
 	public Tranzactie(Cont From, Cont To, float suma) {
 		this.From = From;
@@ -14,6 +16,28 @@ public class Tranzactie {
 			suma = 0;
 		this.suma = suma;
 		id = ++cont;
+		deLaBanca = false;
+		catreBanca = false;
+	}
+	
+	public Tranzactie(Cont From,float suma) {
+		this.From = From;
+		if (suma < 0) 
+			suma = 0;
+		this.suma = suma;
+		id = ++cont;
+		deLaBanca = false;
+		catreBanca = true;
+	}
+	
+	public Tranzactie(Cont From,float suma,int a) {
+		this.From = From;
+		if (suma < 0) 
+			suma = 0;
+		this.suma = suma;
+		id = ++cont;
+		deLaBanca = true;
+		catreBanca = false;
 	}
 	
 	public Cont getTo() {
@@ -34,10 +58,23 @@ public class Tranzactie {
 	
 	@Override
 	public String toString() {
-		String a = "O Tanzactie este:\nIban From " + this.From.IBAN() +
+		String a = "\n";
+		if (!catreBanca && !deLaBanca) {
+			a =a +  "O Tanzactie este:\nIban From " + this.From.IBAN() +
 				" din banca " + this.From.getBanca().Name()+ 
 				" \nIban To " + this.To.IBAN() +" din banca " + this.To.getBanca().Name()+ 
 				"\nSuma " + this.suma + "\n";
+		} 
+		if (catreBanca) {
+			a = a + "O Tanzactie este:\nIban From " + this.From.IBAN() +
+					" catre banca " + this.From.getBanca().Name()+ 
+					"\nSuma " + this.suma + "\n";
+		} 
+		if (deLaBanca){
+			a = "O Tanzactie este:\nSpre Iban  " + this.From.IBAN() +
+					"\nSuma " + this.suma + "\n";
+		}
+		a= a + "\n";
 		return a;
 	}
 }

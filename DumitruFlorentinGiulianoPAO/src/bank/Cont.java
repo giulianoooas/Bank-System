@@ -93,6 +93,10 @@ public class Cont {
 	public void addMoney(float val) {
 		if (val < 0)
 			val = 0;
+		if (val == 0)
+			return;
+		Tranzactie tr = new Tranzactie(this,val,1);
+		extras.addTranz(tr);
 		suma += val;
 	}
 	
@@ -101,6 +105,10 @@ public class Cont {
 			val = 0;
 		if (val > suma)
 			val = suma;
+		if (val == 0)
+			return;
+		Tranzactie tr = new Tranzactie(this,-val,1);
+		extras.addTranz(tr);
 		val -= suma;
 	}
 	
@@ -124,7 +132,7 @@ public class Cont {
 			value = suma;
 		if (value < 0)
 			value = 0;
-		if (cont != null) {
+		if (cont != null && suma != 0) {
 			cont.suma += value;
 			suma -= value;
 			Tranzactie tr = new Tranzactie(this,cont, value);
@@ -146,6 +154,10 @@ public class Cont {
 			value = suma;
 		if (value < 0)
 			value = 0;
+		if (value == 0)
+			return;
+		Tranzactie tr = new Tranzactie(this,value);
+		extras.addTranz(tr);
 		suma -= value;
 		banca.addMoney(value);
 	}
@@ -155,7 +167,7 @@ public class Cont {
 			value = suma;
 		if (value < 0)
 			value = 0;
-		if (cont != null) {
+		if (cont != null && suma != 0) {
 			cont.suma += value;
 			suma -= value;
 			Tranzactie tr = new Tranzactie(this,cont, value);
