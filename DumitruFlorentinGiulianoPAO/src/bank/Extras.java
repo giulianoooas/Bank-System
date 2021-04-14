@@ -1,7 +1,6 @@
 package bank;
 import java.util.ArrayList;
-import bank.Tranzactie;
-import bank.Cont;
+
 
 public class Extras {
 	private ArrayList<Tranzactie> ex;

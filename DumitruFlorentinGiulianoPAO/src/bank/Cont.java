@@ -1,9 +1,4 @@
 package bank;
-import bank.Extras;
-import bank.Tranzactie;
-import bank.Portofel;
-import bank.Card;
-import bank.Banca;
 import java.util.LinkedList;
 /*
  * Daca Tranzactionez intre alte banci, atunci isi va pastra si banca un comision de 2 la suta
@@ -210,4 +205,13 @@ public class Cont {
 			banca.makeDepozit(this,suma);
 		}
 	}
+	
+	public int nrCarduri() {
+		return portofel.nrCarduri();
+	}
+	
+	public void afiseazaCarduri() {
+		portofel.afiseazaCarduri();
+	}
+	
 }

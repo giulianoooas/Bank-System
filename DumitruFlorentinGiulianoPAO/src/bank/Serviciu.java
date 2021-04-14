@@ -1,5 +1,4 @@
 package bank;
-import bank.Cont;
 
 public abstract class Serviciu {
 	protected String descriere;
