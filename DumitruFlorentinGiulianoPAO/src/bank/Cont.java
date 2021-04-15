@@ -111,12 +111,20 @@ public class Cont {
 		return portofel.getCard(id);
 	}
 	
+	public void setPin(int index, String Pin) {/// setez un nou pin pentru card
+		portofel.getCard(index).setPin(Pin);
+	}
+	
 	public void addCard(String pin) {
 		portofel.addCard(pin);
 	}
 	
 	public void removeCard() {
 		portofel.removeCard();
+	}
+	
+	public void removeCard(int index) {
+		portofel.removeCard(index);
 	}
 	
 	public void sentMoney(String iban, float value) {

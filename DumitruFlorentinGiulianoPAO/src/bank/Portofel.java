@@ -30,6 +30,9 @@ public class Portofel {
 	}
 	
 	public void removeCard() {
+		/*
+		 * Aici voi sterge decat ultimul card
+		 */
 		if (nrCarduri != 1) { /// trebuie neaparat sa existe un card
 			nrCarduri --;
 			Card[] c = new Card[nrCarduri];
@@ -42,9 +45,32 @@ public class Portofel {
 		}
 	}
 	
+	public void removeCard(int index) {
+		/*
+		 * Aici voi sterge un card anume, dupa index
+		 */
+		if (index >= nrCarduri || index < 0) 
+			return;
+		if (nrCarduri != 1) { /// trebuie neaparat sa existe un card
+			Card[] c = new Card[nrCarduri-1];
+			int poz = 0;
+			for (int i = 0; i < nrCarduri; i ++) 
+				if (i != index) {
+					c[poz++] = carduri[i];
+				}
+			carduri = new Card[nrCarduri-1];
+			for (int i = 0; i < nrCarduri-1; i ++)
+				carduri[i] = c[i];
+			nrCarduri --;
+			
+		}
+	}
+	
 	public Card getCard(int id) {
 		if (id > nrCarduri - 1)
 			id = nrCarduri - 1;
+		if  (id < 0)
+			id = 0;
 		return carduri[id];
 	}
 	
