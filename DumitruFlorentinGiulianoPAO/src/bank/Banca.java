@@ -1,6 +1,7 @@
 package bank;
 import java.util.ArrayList;
 import java.util.Hashtable;
+import proiect.AuditWriter;
 
 /*
  * Am doar doua tipuri de servicii, imprumuturi si depozite, toate cu valori prestabilite
@@ -16,6 +17,7 @@ public class Banca { /// Am facut o singura banca intre care se pot face toate t
 	private Imprumut imprumuta;
 	private Depozit depoziteaza;
 	private Hashtable <Cont, Float> ver;
+	private AuditWriter a = AuditWriter.getInstance();
 	
 	private boolean isValid(String nume) {
 		for (String n : numeValide) {
@@ -33,6 +35,7 @@ public class Banca { /// Am facut o singura banca intre care se pot face toate t
 	}
 	
 	public Banca(String nume) {
+		a.WriteData("Adaugam o banca");
 		this.nume = this.GoodName(nume);
 		nrConturi = 0;
 		conturi =new ArrayList<Cont>();
@@ -45,10 +48,12 @@ public class Banca { /// Am facut o singura banca intre care se pot face toate t
 	}
 	
 	public float getSuma() {
+		a.WriteData("Afisam suma dintr-o banca");
 		return suma;
 	}
 	
 	public void addMoney(float money) {
+		a.WriteData("Adaugam bani intr-o banca");
 		if (money < 0)
 			money = 0;
 		suma += money;
@@ -62,6 +67,7 @@ public class Banca { /// Am facut o singura banca intre care se pot face toate t
 		if (money == 0)
 			return 0;
 		suma -= money;
+		a.WriteData("Trimitem bani de la o banca la un cont");
 		cont.addMoney(money);
 		return money;
 	}
@@ -82,10 +88,12 @@ public class Banca { /// Am facut o singura banca intre care se pot face toate t
 		nrConturi++;
 		Cont cont =  new Cont(Detinator,this);
 		conturi.add(cont);
+		a.WriteData("Adaugam un cont");
 	}
 	
 	public void addCont(Cont cont) {
 		conturi.add(cont);
+		a.WriteData("Adaugam un cont");
 	}
 	
 	public Cont getCont(int id) {
@@ -102,6 +110,7 @@ public class Banca { /// Am facut o singura banca intre care se pot face toate t
 			nrConturi --;
 			conturi.remove(cont);
 		}
+		a.WriteData("Stergem un cont");
 	}
 	
 	public Cont getCont(String iban) {
@@ -115,6 +124,7 @@ public class Banca { /// Am facut o singura banca intre care se pot face toate t
 	public void impumuta(Cont cont,float val) { /// pot imprumuta doar daca este aceasi banca
 		if (cont.getBanca().nume.equals(this.nume) && suma != 0) {
 			imprumuta.Aplica(cont,val);
+			a.WriteData("Imprumutam un cont");
 		}
 	}
 	
@@ -126,6 +136,7 @@ public class Banca { /// Am facut o singura banca intre care se pot face toate t
 				val = 0;
 			ver.put(cont, val);
 			sumaDepozite += val;
+			a.WriteData("Depozitam dintr-un cont");
 			return true;
 		} 
 		return false;

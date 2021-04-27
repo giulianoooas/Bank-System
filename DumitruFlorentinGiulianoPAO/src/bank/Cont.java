@@ -1,5 +1,6 @@
 package bank;
 import java.util.LinkedList;
+import proiect.AuditWriter;
 /*
  * Daca Tranzactionez intre alte banci, atunci isi va pastra si banca un comision de 2 la suta
  * 
@@ -15,6 +16,7 @@ public class Cont {
 	private Banca banca;
 	private boolean areUnServiciuActiv;
 	private static LinkedList<Cont> conturi = new LinkedList<Cont>();
+	private AuditWriter a = AuditWriter.getInstance();
 	
 	private Cont getContById(int id) {
 		for (Cont a : conturi) {
@@ -40,6 +42,7 @@ public class Cont {
 	}
 	
 	public Cont(String Detinator,Banca banca) {
+		a.WriteData("Adaugam un cont");
 		id = ++cont;
 		this.Detinator = nameCorector(Detinator);
 		Iban = " ";
@@ -70,11 +73,13 @@ public class Cont {
 	}
 	
 	public void Extras() {
+		a.WriteData("Afisam extrasul unui cont");
 		extras.showExtras();
 	}
 	
-	public void addTranzactie(Tranzactie a) {
-		extras.addTranz(a);
+	public void addTranzactie(Tranzactie aa) {
+		a.WriteData("Facem o tranzactie noua");
+		extras.addTranz(aa);
 	}
 	
 	public String IBAN() {
@@ -82,6 +87,7 @@ public class Cont {
 	}
 	
 	public float getSuma() {
+		a.WriteData("Afisam suma de banu dintr-un cont");
 		return suma;
 	}
 	
@@ -92,6 +98,7 @@ public class Cont {
 			return;
 		Tranzactie tr = new Tranzactie(this,val,1);
 		extras.addTranz(tr);
+		a.WriteData("Facem o tranzactie noua");
 		suma += val;
 	}
 	
@@ -104,6 +111,7 @@ public class Cont {
 			return;
 		Tranzactie tr = new Tranzactie(this,-val,1);
 		extras.addTranz(tr);
+		a.WriteData("Facem o tranzactie noua");
 		val -= suma;
 	}
 	
@@ -113,18 +121,22 @@ public class Cont {
 	
 	public void setPin(int index, String Pin) {/// setez un nou pin pentru card
 		portofel.getCard(index).setPin(Pin);
+		a.WriteData("Setam un pin nou");
 	}
 	
 	public void addCard(String pin) {
 		portofel.addCard(pin);
+		a.WriteData("Adaugam un card nou");
 	}
 	
 	public void removeCard() {
 		portofel.removeCard();
+		a.WriteData("Scoatem un card");
 	}
 	
 	public void removeCard(int index) {
 		portofel.removeCard(index);
+		a.WriteData("Scoatem un card");
 	}
 	
 	public void sentMoney(String iban, float value) {
@@ -147,7 +159,7 @@ public class Cont {
 					return;
 				suma -= comision;
 				banca.addMoney(comision);
-				
+				a.WriteData("Adaugam o tranzactie noua");
 			}
 		}
 	}
@@ -182,7 +194,7 @@ public class Cont {
 					return;
 				suma -= comision;
 				banca.addMoney(comision);
-				
+				a.WriteData("Adaugam o tranzactie noua");
 			}
 			
 		}
@@ -194,10 +206,12 @@ public class Cont {
 	
 	public void reactiveazaServiciile() {
 		areUnServiciuActiv = false;
+		a.WriteData("Activam serviciile contului");
 	}
 	
 	public void dezactiveazaServiciile() {
 		areUnServiciuActiv = true;
+		a.WriteData("Dezactivam serviciile contului");
 	}
 	
 	public void imprumuta(float suma) {
@@ -220,6 +234,7 @@ public class Cont {
 	
 	public void afiseazaCarduri() {
 		portofel.afiseazaCarduri();
+		a.WriteData("Afisam cardurile contului");
 	}
 	
 }

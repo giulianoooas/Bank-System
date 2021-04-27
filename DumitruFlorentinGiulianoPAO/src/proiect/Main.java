@@ -2,8 +2,29 @@ package proiect;
 import bank.*;
 import java.util.*;
 
+
+/*
+ * 
+ * Actiunile primei etape:
+ * 1) Adaugarea unei banci
+ * 2) Schimbarea pinului unui card.
+ * 3) Adaugarea unui cont
+ * 4) Stergerea unui cont
+ * 5) Adaugarea unui card
+ * 6) Stergerea unui card
+ * 7) Creerea unui tranzactii
+ * 8) Imprumutul de bani
+ * 9) Depozitarea de bani
+ * 10) Sa vezi extrasul.
+ * 11) Sa trimitem bani
+ * 12) Afisam carduri.
+ * 
+ */
+
+
 public class Main {
 
+	static AuditWriter audit = AuditWriter.getInstance();
 	static List<Banca> Banci = new ArrayList<Banca>();
 	static List<Cont> Conturi = new ArrayList<Cont>();
 	
@@ -107,7 +128,6 @@ public class Main {
 	
 	
 	public static void main(String[] args) {
-			
 		 citireBanci();
 		 citireConturi();
 		 citireCarduri();
@@ -117,6 +137,7 @@ public class Main {
 			 System.out.print("Contul " + cont.getDetinator() + ":\n");
 			 cont.afiseazaCarduri();
 		 }
+		 audit.close();
 	}
 
 }
