@@ -37,6 +37,7 @@ public class Main {
 				for (Banca banca : Banci) {
 					if (banca.Name().equals(rezultate[1])) {
 						Cont cont = new Cont(rezultate[0],banca);
+						cont.addMoney(1000); /// ma asigur ca fiecare cont are 1000 de dolari
 						Conturi.add(cont);
 						System.out.print("Detinator " + rezultate[0] + " banca " + rezultate[1] + "\n");
 						break;
@@ -73,11 +74,44 @@ public class Main {
 		}
 	}
 	
+	public static void citireTranzactii() {
+		System.out.print("Vom citi tranzactiile sub forma: From To Money!\n");
+		try {
+			
+			CsvReader c = new CsvReader("C:\\Users\\Florentin-Giuliano D\\Desktop\\DumitruFlorentinGiulianoPAO\\src\\proiect\\CSV_Files\\Tranzactii.csv");
+			List<String> tranzactii = c.CitireDate();
+			for (String i : tranzactii) {
+				String[] rezultate = i.split(","); /// imi prelucrez datele
+				for (Cont From : Conturi) {
+					if (From.getDetinator().equals(rezultate[0])) {
+						for (Cont To : Conturi) {
+							if (To.getDetinator().equals(rezultate[1])) {
+								
+								float suma = Float.parseFloat(rezultate[2]);
+								From.sentMoney(To,suma);
+								System.out.print("Contul " + From.getDetinator() + " trimite contului " + To.getDetinator() +" " + suma  +" bani.\n");
+								break;
+							}
+						}
+						break;
+					}
+				}
+			}
+			
+			
+		} catch(Exception e) {
+			System.out.println(e);
+		}
+	}
+	
+	
+	
 	public static void main(String[] args) {
 			
 		 citireBanci();
 		 citireConturi();
 		 citireCarduri();
+		 citireTranzactii();
 		 System.out.println();
 		 for (Cont cont : Conturi) {
 			 System.out.print("Contul " + cont.getDetinator() + ":\n");
