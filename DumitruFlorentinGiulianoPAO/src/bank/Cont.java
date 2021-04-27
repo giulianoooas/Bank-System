@@ -18,6 +18,22 @@ public class Cont {
 	private static LinkedList<Cont> conturi = new LinkedList<Cont>();
 	private AuditWriter a = AuditWriter.getInstance();
 	
+	/*
+	 * Supraincarc hashcode-ul si equals deoarece in Banca am o structura de date ver, ce este un hashmap pentru a verifica daca un cont
+	 * are un serviciu activ in momentul respectiv 
+	 */
+	
+	@Override
+	public boolean equals(Object o) {
+		  Cont c = (Cont)o;
+	      return this.id == c.id;
+	  }
+	
+	@Override
+	public int hashCode() {
+		return id;
+	}
+	
 	private Cont getContById(int id) {
 		for (Cont a : conturi) {
 			if (a.getId() == id)
