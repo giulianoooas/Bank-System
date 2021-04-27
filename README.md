@@ -21,3 +21,7 @@ Proiectul a fost facut in Eclipse.
 
 Pentru a face proiectul ordonat am pus toate fisierele csv intr-un folder in pachetul proiect.
 Pentru citirea si scrierea in fisiere csv am facut clase speciale ce tratau exceptiile.
+
+
+Am folosit thread-uri pentru nu bloca sistemul in momentul in care un cont cere sa se faca un imprumut sau un depozit de bani.
+In sistemul implementat de mine, fiecare cont are minimum un card in portfelul digital, nu poti sa stergi sa ramai fara niciunul.
