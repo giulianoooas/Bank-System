@@ -18,3 +18,6 @@ Proiectul a fost facut in Eclipse.
   3) Imprumutul si Depozitul sunt clase statice, iar Serviciu este o clasa abstracta ce ne ajuta sa implementam cele 2 clase singleton.
   4) Fiecare Cont poate face mai multe tranzactii, pentru usurinta am creat o clasa de legatura Extras ce imi arata toate tranzactiile facute de un cont. 
 ```
+
+Pentru a face proiectul ordonat am pus toate fisierele csv intr-un folder in pachetul proiect.
+Pentru citirea si scrierea in fisiere csv am facut clase speciale ce tratau exceptiile.
