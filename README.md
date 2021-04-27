@@ -2,6 +2,22 @@ Tema proiectului este o aplicatie bancara.
 
 Proiectul a fost facut in Eclipse.
 
+# Actiuni/ Interogari
+```
+  1) Adaugarea unei banci
+  2) Schimbarea pinului unui card.
+  3) Adaugarea unui cont
+  4) Stergerea unui cont
+  5) Adaugarea unui card
+  6) Stergerea unui card
+  7) Creerea unui tranzactii
+  8) Imprumutul de bani
+  9) Depozitarea de bani
+  10) Sa vezi extrasul
+  11) Sa trimitem bani
+  12) Afisam carduri
+```
+
 # Clase
 ```
   1) Main (clasa de baza ce apeleaza tot)
@@ -33,6 +49,15 @@ Proiectul a fost facut in Eclipse.
   2) Un cont poate sa aiba mai multe carduri. Pentru a nu aparea problema relatiei many-to-many am creat un portofel ce e clasa auxiliara.
   3) Imprumutul si Depozitul sunt clase statice, iar Serviciu este o clasa abstracta ce ne ajuta sa implementam cele 2 clase singleton.
   4) Fiecare Cont poate face mai multe tranzactii, pentru usurinta am creat o clasa de legatura Extras ce imi arata toate tranzactiile facute de un cont. 
+```
+
+# Clase cu fisiere CSV pentru etapa a 2-a
+
+```
+  1) Banca
+  2) Cont
+  3) Tranzactie
+  4) Card
 ```
 
 Pentru a face proiectul ordonat am pus toate fisierele csv intr-un folder in pachetul proiect.
