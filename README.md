@@ -2,6 +2,22 @@ Tema proiectului este o aplicatie bancara.
 
 Proiectul a fost facut in Eclipse.
 
+# Clase
+```
+  1) Main (clasa de baza ce apeleaza tot)
+  2) Banca (clasa ce memoreaza informatiile despre o banca)
+  3) Cont (informatiile despre cont)
+  4) Card 
+  5) Portofel (ce leaga un cont cu mai multe carduri)
+  6) Tranzactie
+  7) Extras
+  8) Serviciu (o interfata ce ma ajuta sa declar serviciile unei banci)
+  9) Imprumut (primul serviciu)
+  10) Depozit (al doilea serviciu)
+  11) AuditWriter (o clasa singleton ce ma ajuta sa scriu in csv-ul Audit.csv auditul)
+  12) CsvReader (O clasa utilitara pentru citirea de csv-uri)
+```
+
 # Functionalitati:
 ```
   1) Adaugarea intr-o baza de date usoara a unei banci;
