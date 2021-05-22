@@ -1,62 +1,49 @@
 package bank;
 import java.util.ArrayList;
 import java.util.Hashtable;
-import proiect.AuditWriter;
+import proiect.DatabaseConection;
 
 /*
  * Am doar doua tipuri de servicii, imprumuturi si depozite, toate cu valori prestabilite
  * Nu pot profita de doua servicii in acelasi timp
  */
 public class Banca { /// Am facut o singura banca intre care se pot face toate tranzactiile
+	private int id;
 	private String nume;
-	private int nrConturi;
 	private float suma;
 	private float sumaDepozite;
-	private ArrayList<Cont> conturi;	
-	private static ArrayList <String> numeValide = new ArrayList<String>();
 	private Imprumut imprumuta;
 	private Depozit depoziteaza;
+	private DatabaseConection db = DatabaseConection.getConection();
 	private Hashtable <Cont, Float> ver;
-	private AuditWriter a = AuditWriter.getInstance();
+	//private AuditWriter a = AuditWriter.getInstance();
 	
-	private boolean isValid(String nume) {
-		for (String n : numeValide) {
-			if (nume.equals(n))
-				return false;
-		}
-		return true;
-	}
 	
-	private String GoodName(String nume) {
-		while (!this.isValid(nume)) {
-			nume += 1;
-		}
-		return nume;
-	}
-	
-	public Banca(String nume) {
-		a.WriteData("Adaugam o banca");
-		this.nume = this.GoodName(nume);
-		nrConturi = 0;
-		conturi =new ArrayList<Cont>();
-		numeValide.add(this.nume);
+	public Banca(String nume, int iD) {
+		//a.WriteData("Adaugam o banca");
+		this.nume = nume;
+		this.nume = nume;
 		suma = 0;
 		imprumuta = Imprumut.getImprumut();
 		depoziteaza = Depozit.getDepozit();
 		sumaDepozite = 0;
+		id = iD;
 		ver = new  Hashtable <Cont, Float>();
 	}
 	
+	public int Id() {
+		return id;
+	}
+	
 	public float getSuma() {
-		a.WriteData("Afisam suma dintr-o banca");
 		return suma;
 	}
 	
 	public void addMoney(float money) {
-		a.WriteData("Adaugam bani intr-o banca");
 		if (money < 0)
 			money = 0;
 		suma += money;
+		db.actualizeazaBaniBanca(id, suma);
 	}
 	
 	public float giveMoney(float money, Cont cont) {
@@ -67,64 +54,35 @@ public class Banca { /// Am facut o singura banca intre care se pot face toate t
 		if (money == 0)
 			return 0;
 		suma -= money;
-		a.WriteData("Trimitem bani de la o banca la un cont");
 		cont.addMoney(money);
+		db.actualizeazaBaniBanca(id, suma);
 		return money;
 	}
 	
 	public void setNume(String Nume) {
-		if (!this.isValid(Nume))
-			return;
-		numeValide.remove(this.nume);
-		nume = Nume;
-		numeValide.add(this.nume);
+		if  (db.setNumeBanca(id, Nume))
+				nume = Nume;
 	}
 	
 	public String Name() {
 		return nume;
 	}
 	
-	public void addCont(String Detinator) {
-		nrConturi++;
-		Cont cont =  new Cont(Detinator,this);
-		conturi.add(cont);
-		a.WriteData("Adaugam un cont");
-	}
-	
-	public void addCont(Cont cont) {
-		conturi.add(cont);
-		a.WriteData("Adaugam un cont");
-	}
-	
-	public Cont getCont(int id) {
-		for (Cont cont : conturi) {
-			if (cont.getId() == id)
-				return cont;
-		}
-		return null;
+	public Cont addCont(String Detinator) {
+		return db.addCont(Detinator, id);
 	}
 	
 	public void removeCont(int id) {
-		Cont cont = this.getCont(id);
-		if (cont != null) {
-			nrConturi --;
-			conturi.remove(cont);
-		}
-		a.WriteData("Stergem un cont");
+		db.removeCont(id, this.id);
 	}
 	
-	public Cont getCont(String iban) {
-		for (Cont cont : conturi) {
-			if (cont.IBAN() == iban)
-				return cont;
-		}
-		return null;
+	public void removeCont(String Iban) {
+		db.removeCont(Iban, this.id);
 	}
 	
 	public void impumuta(Cont cont,float val) { /// pot imprumuta doar daca este aceasi banca
 		if (cont.getBanca().nume.equals(this.nume) && suma != 0) {
 			imprumuta.Aplica(cont,val);
-			a.WriteData("Imprumutam un cont");
 		}
 	}
 	
@@ -136,7 +94,6 @@ public class Banca { /// Am facut o singura banca intre care se pot face toate t
 				val = 0;
 			ver.put(cont, val);
 			sumaDepozite += val;
-			a.WriteData("Depozitam dintr-un cont");
 			return true;
 		} 
 		return false;
@@ -156,4 +113,9 @@ public class Banca { /// Am facut o singura banca intre care se pot face toate t
 		depoziteaza.Aplica(cont,val);
 	}
 	
+	@Override
+	public String toString() {
+		String res = "Numele bancii este " + nume + " si are " + suma;
+		return res;
+	}
 }

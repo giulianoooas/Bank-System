@@ -3,6 +3,7 @@ package bank;
 public class Card {
 	private String Pin;
 	private Cont Propietar;
+	private int id;
 	
 	private boolean isValid(String pin) {
 		boolean verificare = true;
@@ -27,22 +28,33 @@ public class Card {
 		return Pin;
 	}
 	
-	public Card(Card c) {
+	public Card(Card c, int id) {
+		this.id = id;
 		this.Pin = c.Pin;
 		this.Propietar = c.Propietar;
 	}
 	
-	public Card(Cont propietar, String pin) {
+	public Card(Cont propietar, String pin,int id) {
 		Propietar = propietar;
 		if (!this.isValid(pin)) {
 			pin = "1234";
 		}
 		Pin = pin;
+		this.id = id;
 	}
 	
 	public Card() {
 		Pin = "";
 		Propietar = null;
+		id = -1;
+	}
+	
+	public int Id() {
+		return id;
+	}
+	
+	public Cont getCont() {
+		return Propietar;
 	}
 	
 	public float getMoney() {
@@ -63,7 +75,7 @@ public class Card {
 	}
 	
 	public Card copy(Card c) {
-		return new Card(c.Propietar,c.Pin);
+		return new Card(c.Propietar,c.Pin,c.id);
 	}
 	
 	@Override

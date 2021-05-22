@@ -3,37 +3,36 @@ package bank;
 public class Tranzactie {
 	private Cont From; /// cine trimite banii
 	private Cont To; /// catre cine se trimit
-	private static int cont = 0;
 	private int id;
 	private float suma;
 	private boolean deLaBanca;
 	private boolean catreBanca;
 	
-	public Tranzactie(Cont From, Cont To, float suma) {
+	public Tranzactie(Cont From, Cont To, float suma,int i) {
 		this.From = From;
 		this.To = To;
 		if (suma < 0) 
 			suma = 0;
 		this.suma = suma;
-		id = ++cont;
+		id = i;
 		deLaBanca = false;
 		catreBanca = false;
 	}
 	
-	public Tranzactie(Cont From,float suma) {
+	public Tranzactie(Cont From,float suma,int i) {
 		this.From = From;
 		if (suma < 0) 
 			suma = 0;
 		this.suma = suma;
-		id = ++cont;
+		id = i;
 		deLaBanca = false;
 		catreBanca = true;
 	}
 	
-	public Tranzactie(Cont From,float suma,int a) {
+	public Tranzactie(Cont From,float suma,int a, int i) {
 		this.From = From;
 		this.suma = suma;
-		id = ++cont;
+		id = i;
 		deLaBanca = true;
 		catreBanca = false;
 	}
