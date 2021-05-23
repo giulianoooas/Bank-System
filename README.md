@@ -66,3 +66,16 @@ Pentru citirea si scrierea in fisiere csv am facut clase speciale ce tratau exce
 
 Am folosit thread-uri pentru nu bloca sistemul in momentul in care un cont cere sa se faca un imprumut sau un depozit de bani.
 In sistemul implementat de mine, fiecare cont are minimum un card in portfelul digital, nu poti sa stergi sa ramai fara niciunul.
+
+#Etapa 3 si modificarile aduse aplicatiei
+
+Pentru aceasta etapa a trebuit sa schimb radical conceptul aplicatiei mele.
+Am creat o clasa utilitara pentru a lucru cu baza de date, clasa numica DatabaseConection ce este un singleton, deoarece am nevoie doar de o singura instanta a conexiunii.
+In aceasta clasa am implementat actiunile CRUD pe 4 elemente.
+```
+-         1) Banca(#idBanca, Nume, Suma)
+		  		2) Cont(#idCont, Detinator, idBanca, suma, Iban)
+		  		3) Card(#idCard, idCont,Pin)
+		  		4) Tranzactie (#idTranzactie, Cont1,Cont2,Banca1,Banc2, suma)
+```
+Singura clasa ce nu are posibilitatea de a fi actualizata este Tranzactie, deoarece dupa ce s-a facut o tranzactie, ea nu mai poate fi scimbata.
