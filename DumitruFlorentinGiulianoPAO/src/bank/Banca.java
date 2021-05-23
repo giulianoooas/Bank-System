@@ -115,7 +115,7 @@ public class Banca { /// Am facut o singura banca intre care se pot face toate t
 	
 	@Override
 	public String toString() {
-		String res = "Numele bancii este " + nume + " si are " + suma;
+		String res = "Numele bancii este " + nume + " si are " + suma + " bani.";
 		return res;
 	}
 }
