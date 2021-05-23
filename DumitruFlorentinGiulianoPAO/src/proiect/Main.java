@@ -284,6 +284,17 @@ public class Main {
 		}
 	}
 	
+	static public void StergeOTranzactie() {
+		ArrayList<Tranzactie> trs = db.getAllTranzactii();
+		System.out.println("Tranzactiile sunt: ");
+		for (Tranzactie tr : trs) {
+			System.out.println("Id-ul este " + tr.Id() + "\n" + tr.toString());
+		}
+		System.out.print("Sterge tranzactia: ");
+		int id = sc.nextInt();
+		db.removeTranzactie(id);
+	}
+	
 	static public void AfisInitial() {
 		String instruciuni = "Instructiunile aplicatiei sunt: \n"+
 				"Vei alege unul dintre numerele selectate in functie de comanda dorita si dupa vei respecta pasii de acolo.\n"+
@@ -302,7 +313,8 @@ public class Main {
 				"13) Trimite bani de la cont la banca\n" + 
 				"14) Trimite bani de la cont la cont\n" + 
 				"15) Creeaza un depozit\n"+ 
-				"16) Creaza un imprumut";
+				"16) Creaza un imprumut\n"+
+				"17) Sterge o tranzactie\n";
 		System.out.println(instruciuni);
 	}
 	
@@ -381,6 +393,11 @@ public class Main {
 		
 		if (instr == 16) {
 			CreazaUnImprumut();
+			return true;
+		}
+		
+		if (instr == 17) {
+			StergeOTranzactie();
 			return true;
 		}
 		

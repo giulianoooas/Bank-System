@@ -545,11 +545,11 @@ public class DatabaseConection {
 		/// Tranzactie (#idTranzactie, Cont1,Cont2,Banca, suma)
 		/// La tranzactie nu am nevoie de update, deoarece o tranzactie facuta ramane neschimbata
 		
-		static public ArrayList<Tranzactie> getAllTranzactii(int id){
+		static public ArrayList<Tranzactie> getAllTranzactii(){
 			ArrayList<Tranzactie> rez =new  ArrayList<Tranzactie>();
 			try {
 				Statement stm = conn.createStatement();
-				String sql = "select * from Tranzactie where Cont1 = " + id+" or Cont2 = "+ id + ";";
+				String sql = "select * from Tranzactie;";
 				ResultSet res = stm.executeQuery(sql);
 				while(res.next()) {
 					Integer to = res.getInt("Cont1"), from = res.getInt("Cont2");
@@ -568,6 +568,42 @@ public class DatabaseConection {
 					} 
 					if (To == null) {
 						Tranzactie t = new Tranzactie(From,suma,false);
+						rez.add(t);
+					}
+				}
+				
+			} catch(Exception e) {
+				System.out.println(e.toString());
+			}
+			return rez;
+		}
+		
+		static public ArrayList<Tranzactie> getAllTranzactii(int id){
+			ArrayList<Tranzactie> rez =new  ArrayList<Tranzactie>();
+			try {
+				Statement stm = conn.createStatement();
+				String sql = "select * from Tranzactie where Cont1 = " + id+" or Cont2 = "+ id + ";";
+				ResultSet res = stm.executeQuery(sql);
+				while(res.next()) {
+					Integer to = res.getInt("Cont1"), from = res.getInt("Cont2");
+					float suma = res.getFloat("suma");
+					Cont To = getContById(to);
+					Cont From = getContById(from);
+					if (To != null && From != null) {
+						Tranzactie t = new Tranzactie(To,From,suma,false);
+						t.setId(res.getInt("idTranzactie"));
+						rez.add(t);
+						continue;
+					} 
+					if (From == null) {
+						Tranzactie t = new Tranzactie(To,suma,1,false);
+						t.setId(res.getInt("idTranzactie"));
+						rez.add(t);
+						continue;
+					} 
+					if (To == null) {
+						Tranzactie t = new Tranzactie(From,suma,false);
+						t.setId(res.getInt("idTranzactie"));
 						rez.add(t);
 					}
 				}
