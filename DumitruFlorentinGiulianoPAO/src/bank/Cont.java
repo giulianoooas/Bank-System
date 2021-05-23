@@ -216,6 +216,7 @@ public class Cont {
 	}
 	
 	public void afiseazaCarduri() {
+		System.out.print("Contul meu are cardurile:\n");
 		portofel.afiseazaCarduri();
 		//a.WriteData("Afisam cardurile contului");
 	}
