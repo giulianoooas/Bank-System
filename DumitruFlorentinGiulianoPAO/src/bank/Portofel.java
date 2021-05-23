@@ -11,8 +11,8 @@ public class Portofel {
 		Propietar = propietar;
 	}
 	
-	public Card addCard(String pin) {
-		return db.addCard(Propietar.getId(), pin);
+	public void addCard(String pin) {
+		db.addCard(Propietar.getId(), pin);
 	}
 	
 	public void removeCard(int id) {
@@ -26,6 +26,7 @@ public class Portofel {
 	
 	public void afiseazaCarduri() {
 		ArrayList<Card> carduri = db.getAllCards(Propietar.getId());
+		if (carduri.isEmpty()) System.out.println("Contul acesta nu are inca carduri.");
 		for (Card c : carduri) {
 			System.out.println(c.toString());
 		}

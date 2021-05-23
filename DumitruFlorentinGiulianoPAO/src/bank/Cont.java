@@ -222,7 +222,7 @@ public class Cont {
 	
 	@Override
 	public String toString() {
-		return "Contul este al propietarului: " + Detinator + " si are Iban: " + Iban; 
+		return "Contul este al propietarului: " + Detinator + " si are Iban: " + Iban + " id: " + id; 
 	}
 	
 }

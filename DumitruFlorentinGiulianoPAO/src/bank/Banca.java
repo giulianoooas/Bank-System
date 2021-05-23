@@ -68,8 +68,8 @@ public class Banca { /// Am facut o singura banca intre care se pot face toate t
 		return nume;
 	}
 	
-	public Cont addCont(String Detinator) {
-		return db.addCont(Detinator, id);
+	public void addCont(String Detinator) {
+		db.addCont(Detinator, id);
 	}
 	
 	public void removeCont(int id) {

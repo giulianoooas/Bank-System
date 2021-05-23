@@ -32,6 +32,7 @@ public class Card {
 		this.id = id;
 		this.Pin = c.Pin;
 		this.Propietar = c.Propietar;
+		
 	}
 	
 	public Card(Cont propietar, String pin,int id) {
@@ -80,7 +81,7 @@ public class Card {
 	
 	@Override
 	public String toString() {
-		String s = "Cardul cu pinul " + Pin;
+		String s = "Cardul cu pinul " + Pin + " id : " + id;
 		return s;
 	}
 }
