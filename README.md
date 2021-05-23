@@ -73,9 +73,30 @@ Pentru aceasta etapa a trebuit sa schimb radical conceptul aplicatiei mele.
 Am creat o clasa utilitara pentru a lucru cu baza de date, clasa numica DatabaseConection ce este un singleton, deoarece am nevoie doar de o singura instanta a conexiunii.
 In aceasta clasa am implementat actiunile CRUD pe 4 elemente.
 ```
--         1) Banca(#idBanca, Nume, Suma)
-		  		2) Cont(#idCont, Detinator, idBanca, suma, Iban)
-		  		3) Card(#idCard, idCont,Pin)
-		  		4) Tranzactie (#idTranzactie, Cont1,Cont2,Banca1,Banc2, suma)
+ 1) Banca(#idBanca, Nume, Suma)
+ 2) Cont(#idCont, Detinator, idBanca, suma, Iban)
+ 3) Card(#idCard, idCont,Pin)
+ 4) Tranzactie (#idTranzactie, Cont1,Cont2,Banca1,Banc2, suma)
 ```
 Singura clasa ce nu are posibilitatea de a fi actualizata este Tranzactie, deoarece dupa ce s-a facut o tranzactie, ea nu mai poate fi schimbata.
+Pentru a realiza demo-ul, l-am facut pe baza consolei, prin mai multe comenzi si un meniu interactiv.
+Prin el poti sa faci urmatoarele actiuni:
+```
+1) pentru a afisa toate informatiile actuale
+2) pentru a adauga o banca
+3) pentru a adauga un cont
+4) pentru a adauga un card
+5) pentru a sterge o banca
+6) pentru a sterge un cont
+7) Schimba numele unei banci
+8) Schimba numele unui posesor de cont
+9) Sterge un card
+10) Schimba pinul unui card
+11) Adauga bani intr-o banca
+12) Trimite bani intr-un cont
+13) Trimite bani de la cont la banca
+14) Trimite bani de la cont la cont
+15) Creeaza un depozit
+16) Creaza un imprumut
+```
+Orice instructiune ce nu se potriveste, duce la oprirea programului.
