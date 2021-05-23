@@ -78,4 +78,4 @@ In aceasta clasa am implementat actiunile CRUD pe 4 elemente.
 		  		3) Card(#idCard, idCont,Pin)
 		  		4) Tranzactie (#idTranzactie, Cont1,Cont2,Banca1,Banc2, suma)
 ```
-Singura clasa ce nu are posibilitatea de a fi actualizata este Tranzactie, deoarece dupa ce s-a facut o tranzactie, ea nu mai poate fi scimbata.
+Singura clasa ce nu are posibilitatea de a fi actualizata este Tranzactie, deoarece dupa ce s-a facut o tranzactie, ea nu mai poate fi schimbata.
