@@ -11,7 +11,7 @@ public class Tranzactie {
 	/// Tranzactie (idTranzactie#, Cont1, Cont2, Banca, suma)
 	
 	
-	public Tranzactie(Cont From, Cont To, float suma) { /// de la cont la cont
+	public Tranzactie(Cont From, Cont To, float suma, boolean ok) { /// de la cont la cont
 		this.From = From;
 		this.To = To;
 		if (suma < 0) 
@@ -19,25 +19,29 @@ public class Tranzactie {
 		this.suma = suma;
 		deLaBanca = false;
 		catreBanca = false;
-		db.addTranzactie(From, To, suma);
+		if(ok)
+			db.addTranzactie(From, To, suma);
+
 	}
 	
-	public Tranzactie(Cont From,float suma) {
+	public Tranzactie(Cont From,float suma,boolean ok) {
 		this.From = From;
 		if (suma < 0) 
 			suma = 0;
 		this.suma = suma;
 		deLaBanca = false;
 		catreBanca = true;
-		db.addTranzactie(From, suma);
+		if (ok)
+			db.addTranzactie(From, suma);
 	}
 	
-	public Tranzactie(Cont From,float suma,int a) {
+	public Tranzactie(Cont From,float suma,int a, boolean ok) {
 		this.From = From;
 		this.suma = suma;
 		deLaBanca = true;
 		catreBanca = false;
-		db.addTranzactie(From, suma,a);
+		if (ok)
+			db.addTranzactie(From, suma,a);
 	}
 	
 	public Cont getTo() {

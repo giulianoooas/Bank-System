@@ -79,13 +79,22 @@ public class Cont {
 		return suma;
 	}
 	
+	public void addMoneyFromDb(float val) {
+		if (val < 0)
+			val = 0;
+		if (val == 0)
+			return;
+		//a.WriteData("Facem o tranzactie noua");
+		suma += val;
+		db.updateMoneyCont(suma, id);
+	}
+	
 	public void addMoney(float val) {
 		if (val < 0)
 			val = 0;
 		if (val == 0)
 			return;
-		//Tranzactie tr = new Tranzactie(this,val,1);
-		//extras.addTranz(tr);
+		Tranzactie tr = new Tranzactie(this,val,1,true);
 		//a.WriteData("Facem o tranzactie noua");
 		suma += val;
 		db.updateMoneyCont(suma, id);
@@ -98,7 +107,7 @@ public class Cont {
 			val = suma;
 		if (val == 0)
 			return;
-		Tranzactie tr = new Tranzactie(this,-val,1);
+		Tranzactie tr = new Tranzactie(this,-val,1,true);
 		//a.WriteData("Facem o tranzactie noua");
 		suma -= val;
 		db.updateMoneyCont(suma, id);
@@ -134,7 +143,7 @@ public class Cont {
 		if (cont != null && suma != 0) {
 			cont.suma += value;
 			suma -= value;
-			Tranzactie tr = new Tranzactie(this,cont, value);
+			Tranzactie tr = new Tranzactie(this,cont, value,true);
 			if (!cont.banca.Name().equals(this.banca.Name())) {
 				float comision = value%2;
 				if (comision > suma)
@@ -156,7 +165,7 @@ public class Cont {
 			value = 0;
 		if (value == 0)
 			return;
-		Tranzactie tr = new Tranzactie(this,value);
+		Tranzactie tr = new Tranzactie(this,value,true);
 		suma -= value;
 		banca.addMoney(value);
 		db.updateMoneyCont(suma, id);
@@ -171,7 +180,7 @@ public class Cont {
 		if (cont != null && suma != 0) {
 			cont.suma += value;
 			suma -= value;
-			Tranzactie tr = new Tranzactie(this,cont, value);
+			Tranzactie tr = new Tranzactie(this,cont, value,true);
 			if (!cont.banca.Name().equals(this.banca.Name())) {
 				float comision = value%2;
 				if (comision > suma)
@@ -223,7 +232,9 @@ public class Cont {
 	
 	@Override
 	public String toString() {
-		return "Contul este al propietarului: " + Detinator + " si are Iban: " + Iban + " id: " + id; 
+		return "Contul este al propietarului: " + Detinator + 
+				"\nIban: " + Iban + "\nid: " + id+
+				"\nBani: " + suma; 
 	}
 	
 }
