@@ -68,12 +68,12 @@ public class Tranzactie {
 		} 
 		if (catreBanca) {
 			a = a + "O Tanzactie este:\nIban From " + this.From.IBAN() +
-					" catre banca " + this.From.getBanca().Name()+ 
+					" de la banca " + this.From.getBanca().Name()+ 
 					"\nSuma " + this.suma + "\n";
 		} 
 		if (deLaBanca){
 			a = "O Tanzactie este:\nSpre Iban  " + this.From.IBAN() +
-					"\nSuma " + this.suma + "\n";
+					"\nSuma " + this.suma + " catre banca\n";
 		}
 		a= a + "\n";
 		return a;
