@@ -45,7 +45,7 @@ public class Cont {
 		id = ID;
 		this.Detinator = nameCorector(Detinator);
 		this.Iban = Iban;
-		//extras = new Extras(this);
+		extras = new Extras(this);
 		suma = 0;
 		portofel = new Portofel(this);
 		this.banca = banca;

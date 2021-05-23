@@ -14,6 +14,8 @@ public class Extras {
 	public void showExtras() {
 		System.out.println("Extrasul pentru contul meu este: ");
 		ArrayList<Tranzactie> ex = db.getAllTranzactii(Propietar.getId());
+		if (ex.isEmpty())
+			System.out.println("Inca nu avem tranzactii!");
 		for (Tranzactie a : ex) {
 			System.out.print(a.toString());
 		}
