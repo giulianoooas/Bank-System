@@ -70,11 +70,6 @@ public class Cont {
 		extras.showExtras();
 	}
 	
-	public void addTranzactie(Tranzactie aa) {
-		//a.WriteData("Facem o tranzactie noua");
-		extras.addTranz(aa);
-	}
-	
 	public String IBAN() {
 		return Iban;
 	}
@@ -104,7 +99,6 @@ public class Cont {
 		if (val == 0)
 			return;
 		Tranzactie tr = new Tranzactie(this,-val,1);
-		extras.addTranz(tr);
 		//a.WriteData("Facem o tranzactie noua");
 		suma -= val;
 		db.updateMoneyCont(suma, id);
@@ -140,9 +134,7 @@ public class Cont {
 		if (cont != null && suma != 0) {
 			cont.suma += value;
 			suma -= value;
-			//Tranzactie tr = new Tranzactie(this,cont, value);
-			//this.extras.addTranz(tr);
-			//cont.addTranzactie(tr);
+			Tranzactie tr = new Tranzactie(this,cont, value);
 			if (!cont.banca.Name().equals(this.banca.Name())) {
 				float comision = value%2;
 				if (comision > suma)
@@ -164,8 +156,7 @@ public class Cont {
 			value = 0;
 		if (value == 0)
 			return;
-		//Tranzactie tr = new Tranzactie(this,value);
-		//extras.addTranz(tr);
+		Tranzactie tr = new Tranzactie(this,value);
 		suma -= value;
 		banca.addMoney(value);
 		db.updateMoneyCont(suma, id);
@@ -180,9 +171,7 @@ public class Cont {
 		if (cont != null && suma != 0) {
 			cont.suma += value;
 			suma -= value;
-			//Tranzactie tr = new Tranzactie(this,cont, value);
-			//this.extras.addTranz(tr);
-			//cont.addTranzactie(tr);
+			Tranzactie tr = new Tranzactie(this,cont, value);
 			if (!cont.banca.Name().equals(this.banca.Name())) {
 				float comision = value%2;
 				if (comision > suma)

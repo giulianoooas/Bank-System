@@ -1,40 +1,43 @@
 package bank;
+import proiect.DatabaseConection;
 
 public class Tranzactie {
 	private Cont From; /// cine trimite banii
 	private Cont To; /// catre cine se trimit
-	private int id;
 	private float suma;
 	private boolean deLaBanca;
 	private boolean catreBanca;
+	private DatabaseConection db = DatabaseConection.getConection();
+	/// Tranzactie (idTranzactie#, Cont1, Cont2, Banca, suma)
 	
-	public Tranzactie(Cont From, Cont To, float suma,int i) {
+	
+	public Tranzactie(Cont From, Cont To, float suma) { /// de la cont la cont
 		this.From = From;
 		this.To = To;
 		if (suma < 0) 
 			suma = 0;
 		this.suma = suma;
-		id = i;
 		deLaBanca = false;
 		catreBanca = false;
+		db.addTranzactie(From, To, suma);
 	}
 	
-	public Tranzactie(Cont From,float suma,int i) {
+	public Tranzactie(Cont From,float suma) {
 		this.From = From;
 		if (suma < 0) 
 			suma = 0;
 		this.suma = suma;
-		id = i;
 		deLaBanca = false;
 		catreBanca = true;
+		db.addTranzactie(From, suma);
 	}
 	
-	public Tranzactie(Cont From,float suma,int a, int i) {
+	public Tranzactie(Cont From,float suma,int a) {
 		this.From = From;
 		this.suma = suma;
-		id = i;
 		deLaBanca = true;
 		catreBanca = false;
+		db.addTranzactie(From, suma,a);
 	}
 	
 	public Cont getTo() {
@@ -48,10 +51,7 @@ public class Tranzactie {
 	public float getSuma() {
 		return suma;
 	}
-	
-	public int ID() {
-		return id;
-	}
+
 	
 	@Override
 	public String toString() {
