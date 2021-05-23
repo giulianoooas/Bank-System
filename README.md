@@ -98,5 +98,6 @@ Prin el poti sa faci urmatoarele actiuni:
 14) Trimite bani de la cont la cont
 15) Creeaza un depozit
 16) Creaza un imprumut
+17) Sterge o tranzactie
 ```
 Orice instructiune ce nu se potriveste, duce la oprirea programului.
